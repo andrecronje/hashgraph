@@ -6,9 +6,9 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/andrecronje/lachesis/common"
-	"github.com/andrecronje/lachesis/crypto"
-	hg "github.com/andrecronje/lachesis/hashgraph"
+	"github.com/andrecronje/hashgraph/common"
+	"github.com/andrecronje/hashgraph/crypto"
+	hg "github.com/andrecronje/hashgraph/hashgraph"
 )
 
 func TestInit(t *testing.T) {

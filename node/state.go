@@ -5,11 +5,11 @@ import (
 	"sync/atomic"
 )
 
-// NodeState captures the state of a Lachesis node: Gossiping, CatchingUp or Shutdown
+// NodeState captures the state of a hashgraph node: Gossiping, CatchingUp or Shutdown
 type NodeState uint32
 
 const (
-	// Gossiping is the initial state of a Lachesis node.
+	// Gossiping is the initial state of a hashgraph node.
 	Gossiping NodeState = iota
 
 	CatchingUp

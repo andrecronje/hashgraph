@@ -5,9 +5,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/andrecronje/lachesis/common"
-	"github.com/andrecronje/lachesis/hashgraph"
-	aproxy "github.com/andrecronje/lachesis/proxy/app"
+	"github.com/andrecronje/hashgraph/common"
+	"github.com/andrecronje/hashgraph/hashgraph"
+	aproxy "github.com/andrecronje/hashgraph/proxy/app"
 )
 
 func TestSocketProxyServer(t *testing.T) {
@@ -52,7 +52,7 @@ func TestSocketProxyClient(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	clientCh := dummyClient.lachesisProxy.CommitCh()
+	clientCh := dummyClient.hashgraphProxy.CommitCh()
 
 	block := hashgraph.NewBlock(0, 1, [][]byte{[]byte("the test transaction")})
 

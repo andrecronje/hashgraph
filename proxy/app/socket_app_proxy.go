@@ -3,7 +3,7 @@ package app
 import (
 	"time"
 
-	"github.com/andrecronje/lachesis/hashgraph"
+	"github.com/andrecronje/hashgraph/hashgraph"
 	"github.com/sirupsen/logrus"
 )
 

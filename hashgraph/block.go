@@ -7,7 +7,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/andrecronje/lachesis/crypto"
+	"github.com/andrecronje/hashgraph/crypto"
 )
 
 type BlockBody struct {

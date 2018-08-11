@@ -8,7 +8,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/andrecronje/lachesis/crypto"
+	"github.com/andrecronje/hashgraph/crypto"
 )
 
 func initBadgerStore(cacheSize int, t *testing.T) (*BadgerStore, []pub) {

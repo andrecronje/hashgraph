@@ -1,4 +1,4 @@
-package lachesis
+package hashgraph
 
 import (
 	"fmt"
@@ -7,7 +7,7 @@ import (
 	"net/rpc/jsonrpc"
 	"time"
 
-	"github.com/andrecronje/lachesis/hashgraph"
+	"github.com/andrecronje/hashgraph/hashgraph"
 	"github.com/sirupsen/logrus"
 )
 
@@ -32,7 +32,7 @@ func (r *Commit) Respond(stateHash []byte, err error) {
 	r.RespChan <- CommitResponse{stateHash, err}
 }
 
-type SocketLachesisProxyServer struct {
+type SocketHashgraphProxyServer struct {
 	netListener *net.Listener
 	rpcServer   *rpc.Server
 	commitCh    chan Commit
@@ -40,11 +40,11 @@ type SocketLachesisProxyServer struct {
 	logger      *logrus.Logger
 }
 
-func NewSocketLachesisProxyServer(bindAddress string,
+func NewSocketHashgraphProxyServer(bindAddress string,
 	timeout time.Duration,
-	logger *logrus.Logger) (*SocketLachesisProxyServer, error) {
+	logger *logrus.Logger) (*SocketHashgraphProxyServer, error) {
 
-	server := &SocketLachesisProxyServer{
+	server := &SocketHashgraphProxyServer{
 		commitCh: make(chan Commit),
 		timeout:  timeout,
 		logger:   logger,
@@ -57,7 +57,7 @@ func NewSocketLachesisProxyServer(bindAddress string,
 	return server, nil
 }
 
-func (p *SocketLachesisProxyServer) register(bindAddress string) error {
+func (p *SocketHashgraphProxyServer) register(bindAddress string) error {
 	rpcServer := rpc.NewServer()
 	rpcServer.RegisterName("State", p)
 	p.rpcServer = rpcServer
@@ -72,7 +72,7 @@ func (p *SocketLachesisProxyServer) register(bindAddress string) error {
 	return nil
 }
 
-func (p *SocketLachesisProxyServer) listen() error {
+func (p *SocketHashgraphProxyServer) listen() error {
 	for {
 		conn, err := (*p.netListener).Accept()
 		if err != nil {
@@ -83,7 +83,7 @@ func (p *SocketLachesisProxyServer) listen() error {
 	}
 }
 
-func (p *SocketLachesisProxyServer) CommitBlock(block hashgraph.Block, stateHash *StateHash) (err error) {
+func (p *SocketHashgraphProxyServer) CommitBlock(block hashgraph.Block, stateHash *StateHash) (err error) {
 	// Send the Commit over
 	respCh := make(chan CommitResponse)
 	p.commitCh <- Commit{
@@ -106,7 +106,7 @@ func (p *SocketLachesisProxyServer) CommitBlock(block hashgraph.Block, stateHash
 		"block":      block.Index(),
 		"state_hash": stateHash.Hash,
 		"err":        err,
-	}).Debug("LachesisProxyServer.CommitBlock")
+	}).Debug("HashgraphProxyServer.CommitBlock")
 
 	return
 

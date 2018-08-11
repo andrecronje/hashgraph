@@ -26,7 +26,7 @@ func NewSocketAppProxyServer(bindAddress string, logger *logrus.Logger) *SocketA
 
 func (p *SocketAppProxyServer) register(bindAddress string) {
 	rpcServer := rpc.NewServer()
-	rpcServer.RegisterName("Lachesis", p)
+	rpcServer.RegisterName("hashgraph", p)
 	p.rpcServer = rpcServer
 
 	l, err := net.Listen("tcp", bindAddress)

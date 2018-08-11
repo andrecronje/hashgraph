@@ -17,8 +17,8 @@ import (
 
 	"math"
 
-	"github.com/andrecronje/lachesis/common"
-	"github.com/andrecronje/lachesis/crypto"
+	"github.com/andrecronje/hashgraph/common"
+	"github.com/andrecronje/hashgraph/crypto"
 )
 
 var (

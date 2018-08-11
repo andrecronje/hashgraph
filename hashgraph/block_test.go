@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/andrecronje/lachesis/crypto"
+	"github.com/andrecronje/hashgraph/crypto"
 )
 
 func TestSignBlock(t *testing.T) {

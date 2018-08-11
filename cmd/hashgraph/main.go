@@ -14,14 +14,14 @@ import (
 	"github.com/sirupsen/logrus"
 	cli "gopkg.in/urfave/cli.v1"
 
-	"github.com/andrecronje/lachesis/crypto"
-	hg "github.com/andrecronje/lachesis/hashgraph"
-	"github.com/andrecronje/lachesis/net"
-	"github.com/andrecronje/lachesis/node"
-	"github.com/andrecronje/lachesis/proxy"
-	aproxy "github.com/andrecronje/lachesis/proxy/app"
-	"github.com/andrecronje/lachesis/service"
-	"github.com/andrecronje/lachesis/version"
+	"github.com/andrecronje/hashgraph/crypto"
+	hg "github.com/andrecronje/hashgraph/hashgraph"
+	"github.com/andrecronje/hashgraph/net"
+	"github.com/andrecronje/hashgraph/node"
+	"github.com/andrecronje/hashgraph/proxy"
+	aproxy "github.com/andrecronje/hashgraph/proxy/app"
+	"github.com/andrecronje/hashgraph/service"
+	"github.com/andrecronje/hashgraph/version"
 )
 
 var (
@@ -32,12 +32,12 @@ var (
 	}
 	NodeAddressFlag = cli.StringFlag{
 		Name:  "node_addr",
-		Usage: "IP:Port to bind Lachesis",
+		Usage: "IP:Port to bind hashgraph",
 		Value: "127.0.0.1:1337",
 	}
 	NoClientFlag = cli.BoolFlag{
 		Name:  "no_client",
-		Usage: "Run Lachesis with dummy in-memory App client",
+		Usage: "Run hashgraph with dummy in-memory App client",
 	}
 	ProxyAddressFlag = cli.StringFlag{
 		Name:  "proxy_addr",
@@ -98,7 +98,7 @@ var (
 
 func main() {
 	app := cli.NewApp()
-	app.Name = "Lachesis"
+	app.Name = "hashgraph"
 	app.Usage = "hashgraph consensus"
 	app.HideVersion = true //there is a special command to print the version
 	app.Commands = []cli.Command{
@@ -309,11 +309,11 @@ func defaultDataDir() string {
 	home := homeDir()
 	if home != "" {
 		if runtime.GOOS == "darwin" {
-			return filepath.Join(home, ".lachesis")
+			return filepath.Join(home, ".hashgraph")
 		} else if runtime.GOOS == "windows" {
-			return filepath.Join(home, "AppData", "Roaming", "LACHESIS")
+			return filepath.Join(home, "AppData", "Roaming", "hashgraph")
 		} else {
-			return filepath.Join(home, ".lachesis")
+			return filepath.Join(home, ".hashgraph")
 		}
 	}
 	// As we cannot guess a stable location, return empty and handle later

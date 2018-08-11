@@ -1,4 +1,4 @@
-package lachesis
+package hashgraph
 
 import (
 	"fmt"
@@ -7,31 +7,31 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-type SocketLachesisProxy struct {
+type SocketHashgraphProxy struct {
 	nodeAddress string
 	bindAddress string
 
-	client *SocketLachesisProxyClient
-	server *SocketLachesisProxyServer
+	client *SocketHashgraphProxyClient
+	server *SocketHashgraphProxyServer
 }
 
-func NewSocketLachesisProxy(nodeAddr string,
+func NewSocketHashgraphProxy(nodeAddr string,
 	bindAddr string,
 	timeout time.Duration,
-	logger *logrus.Logger) (*SocketLachesisProxy, error) {
+	logger *logrus.Logger) (*SocketHashgraphProxy, error) {
 
 	if logger == nil {
 		logger = logrus.New()
 		logger.Level = logrus.DebugLevel
 	}
 
-	client := NewSocketLachesisProxyClient(nodeAddr, timeout)
-	server, err := NewSocketLachesisProxyServer(bindAddr, timeout, logger)
+	client := NewSocketHashgraphProxyClient(nodeAddr, timeout)
+	server, err := NewSocketHashgraphProxyServer(bindAddr, timeout, logger)
 	if err != nil {
 		return nil, err
 	}
 
-	proxy := &SocketLachesisProxy{
+	proxy := &SocketHashgraphProxy{
 		nodeAddress: nodeAddr,
 		bindAddress: bindAddr,
 		client:      client,
@@ -43,19 +43,19 @@ func NewSocketLachesisProxy(nodeAddr string,
 }
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-//Implement LachesisProxy interface
+//Implement HashgraphProxy interface
 
-func (p *SocketLachesisProxy) CommitCh() chan Commit {
+func (p *SocketHashgraphProxy) CommitCh() chan Commit {
 	return p.server.commitCh
 }
 
-func (p *SocketLachesisProxy) SubmitTx(tx []byte) error {
+func (p *SocketHashgraphProxy) SubmitTx(tx []byte) error {
 	ack, err := p.client.SubmitTx(tx)
 	if err != nil {
 		return err
 	}
 	if !*ack {
-		return fmt.Errorf("Failed to deliver transaction to Lachesis")
+		return fmt.Errorf("Failed to deliver transaction to hashgraph")
 	}
 	return nil
 }

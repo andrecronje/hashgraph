@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/andrecronje/lachesis/crypto"
+	"github.com/andrecronje/hashgraph/crypto"
 )
 
 func createDummyEventBody() EventBody {

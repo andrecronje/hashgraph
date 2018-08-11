@@ -1,4 +1,4 @@
-BUILD_TAGS?=lachesis
+BUILD_TAGS?=hashgraph
 
 # vendor uses Glide to install all the Go dependencies in vendor/
 vendor:
@@ -7,14 +7,14 @@ vendor:
 # install compiles and places the binary in GOPATH/bin
 install:
 	go install --ldflags '-extldflags "-static"' \
-		--ldflags "-X github.com/andrecronje/lachesis/version.GitCommit=`git rev-parse HEAD`" \
-		./cmd/lachesis
+		--ldflags "-X github.com/andrecronje/hashgraph/version.GitCommit=`git rev-parse HEAD`" \
+		./cmd/hashgraph
 
 # build compiles and places the binary in /build
 build:
 	CGO_ENABLED=0 go build \
-		--ldflags "-X github.com/andrecronje/lachesis/version.GitCommit=`git rev-parse HEAD`" \
-		-o build/lachesis ./cmd/lachesis/
+		--ldflags "-X github.com/andrecronje/hashgraph/version.GitCommit=`git rev-parse HEAD`" \
+		-o build/hashgraph ./cmd/hashgraph/
 
 # dist builds binaries for all platforms and packages them for distribution
 dist:

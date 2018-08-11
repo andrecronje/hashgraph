@@ -6,8 +6,8 @@ import (
 	"net/rpc/jsonrpc"
 	"time"
 
-	"github.com/andrecronje/lachesis/hashgraph"
-	bp "github.com/andrecronje/lachesis/proxy/lachesis"
+	"github.com/andrecronje/hashgraph/hashgraph"
+	bp "github.com/andrecronje/hashgraph/proxy/hashgraph"
 	"github.com/sirupsen/logrus"
 )
 

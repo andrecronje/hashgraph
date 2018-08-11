@@ -9,7 +9,7 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/andrecronje/lachesis/common"
+	"github.com/andrecronje/hashgraph/common"
 )
 
 type Hashgraph struct {

@@ -6,7 +6,7 @@ import (
 	"strconv"
 
 	"github.com/dgraph-io/badger"
-	cm "github.com/andrecronje/lachesis/common"
+	cm "github.com/andrecronje/hashgraph/common"
 )
 
 var (

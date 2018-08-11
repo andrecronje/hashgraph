@@ -10,9 +10,9 @@ import (
 
 	"strconv"
 
-	hg "github.com/andrecronje/lachesis/hashgraph"
-	"github.com/andrecronje/lachesis/net"
-	"github.com/andrecronje/lachesis/proxy"
+	hg "github.com/andrecronje/hashgraph/hashgraph"
+	"github.com/andrecronje/hashgraph/net"
+	"github.com/andrecronje/hashgraph/proxy"
 )
 
 type Node struct {
@@ -125,7 +125,7 @@ func (n *Node) Run(gossip bool) {
 
 		switch state {
 		case Gossiping:
-			n.lachesis(gossip)
+			n.hashgraph(gossip)
 		case CatchingUp:
 			n.fastForward()
 		case Shutdown:
@@ -164,7 +164,7 @@ func (n *Node) doBackgroundWork() {
 	}
 }
 
-func (n *Node) lachesis(gossip bool) {
+func (n *Node) hashgraph(gossip bool) {
 	for {
 		oldState := n.getState()
 		select {

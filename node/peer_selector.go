@@ -3,7 +3,7 @@ package node
 import (
 	"math/rand"
 
-	"github.com/andrecronje/lachesis/net"
+	"github.com/andrecronje/hashgraph/net"
 )
 
 type PeerSelector interface {
